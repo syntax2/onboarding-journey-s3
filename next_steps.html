@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 3: What's Next?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .onboarding-step {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background-color: var(--light-text);
+            text-align: center;
+        }
+        .progress-bar-container {
+            width: 80%;
+            max-width: 500px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            height: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            width: 100%; /* Complete */
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+        .next-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+            max-width: 800px;
+        }
+        .next-step-item {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .next-step-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        .next-step-item h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        .next-step-item .btn {
+            padding: 10px 20px;
+            font-size: 0.9em;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="onboarding-step">
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+        <h2 class="fade-in-up">Congratulations! You're All Set!</h2>
+        <p class="fade-in-up delay-1">You've successfully completed your onboarding journey. Here are some next steps to maximize your experience.</p>
+
+        <div class="next-steps-grid container">
+            <div class="next-step-item fade-in-up delay-2">
+                <h3>Invite Your Team</h3>
+                <p>Collaborate seamlessly by inviting your team members to join.</p>
+                <a href="#" class="btn">Invite Now</a>
+            </div>
+            <div class="next-step-item fade-in-up delay-3">
+                <h3>Join Our Community</h3>
+                <p>Connect with other users, ask questions, and share insights.</p>
+                <a href="#" class="btn">Join Community</a>
+            </div>
+            <div class="next-step-item fade-in-up delay-4">
+                <h3>Explore Advanced Features</h3>
+                <p>Unlock the full power of our platform with advanced functionalities.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </div>
+        <div class="btn-group fade-in-up delay-5" style="margin-top: 50px;">
+            <p style="margin-bottom: 15px;">Have feedback? We'd love to hear it!</p>
+            <a href="#" class="btn">Provide Feedback</a>
+        </div>
+    </div>
+
+    <script>
+        // Basic Intersection Observer for this page's elements
+        const faders = document.querySelectorAll('.fade-in-up');
+        const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) { return; }
+                entry.target.classList.add('visible');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+    </script>
+</body>
+</html>
